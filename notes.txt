@@ -1,0 +1,2 @@
+This file was created be Node.js and Bruno Alencar
+ I am trying to append text to my file
