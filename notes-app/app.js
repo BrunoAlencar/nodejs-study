@@ -1,10 +1,4 @@
-const fs = require('fs')
+// const add = require('./utils')
+const getNotes = require('./notes')
 
-fs.writeFileSync('notes.txt', 'This file was created be Node.js and Bruno Alencar')
-
-// i get the wrong function hehe =\
-// fs.appendFile('notes.txt', '\n I am trying to append text to my file', (err)=> {
-//     if(err) throw err;
-// })
-
-fs.appendFileSync('notes.txt', '\n I am trying to append text to my file')
+console.log(getNotes())
