@@ -6,3 +6,4 @@ console.log(getNotes())
 
 
 console.log(validator.isEmail('joaobrunoalencar@gmail.com'))
+console.log(validator.isURL('www.google.comaz'))
