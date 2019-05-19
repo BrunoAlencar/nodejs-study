@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-study",
+  "version": "1.0.0",
+  "description": "Nodejs Study project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrunoAlencar/nodejs-study.git"
+  },
+  "keywords": [
+    "Node.js",
+    "javascript",
+    "study"
+  ],
+  "author": "João Bruno Alencar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BrunoAlencar/nodejs-study/issues"
+  },
+  "homepage": "https://github.com/BrunoAlencar/nodejs-study#readme",
+  "dependencies": {
+    "validator": "^10.11.0"
+  }
+}
