@@ -19,7 +19,27 @@ yargs.command('remove', 'remove a note', () => {
 
 yargs.command('list', 'list notes', () => { console.log('Showing all notes')})
 yargs.command('read', 'read a note', () => { console.log('Reading a single note') })
+yargs.command({
+    command: 'reade',
+    describe: 'readdddd',
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        },
+        body: {
+            describe: 'Body text',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: (argv) => {
+        console.log('Title: ' + argv.title)
+        console.log('Body: ' + argv.body)
+    }
+})
 
-console.log(yargs.argv) // need this to active yargs argv
+yargs.parse()
 // yargs.command()
 // add, remove, read, list
