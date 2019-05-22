@@ -1,9 +1,14 @@
-const book = {
-    title: 'Ego is the Enemy',
-    author: 'Ryan Holiday'
-}
+const fs = require('fs')
 
 
-const bookJSON = JSON.stringify(book)
+// fs.writeFileSync('1-json.json', bookJSON)
 
-console.log(bookJSON)
+const book = JSON.parse(fs.readFileSync('1-json.json'))
+console.log('Before', JSON.parse(fs.readFileSync('1-json.json')))
+
+book.title = "Seja Foda"
+book.author = "Caio Carneiro"
+
+fs.writeFileSync('1-json.json', JSON.stringify(book))
+
+console.log('After', JSON.parse(fs.readFileSync('1-json.json')))
