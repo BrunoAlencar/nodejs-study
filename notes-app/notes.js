@@ -4,6 +4,8 @@ const chalk = require('chalk')
 const getNotes = () => {
     console.log(chalk.green.inverse('Your notes:'))
     const notes = loadNotes()
+    // debugger
+    //  to start and debbuging just use node inspect app.js
     notes.forEach(note => {
         console.log(chalk.green.inverse(note.title))
     });
@@ -14,7 +16,6 @@ const getNotes = () => {
 
 const readNote = (title) => {
     const notes = loadNotes()
-
     const noteFind = notes.find((note) => note.title == title)
     // console.log(noteFind)
     if(noteFind){
