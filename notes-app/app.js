@@ -28,8 +28,27 @@ yargs.command({
 })
 
 
-yargs.command('list', 'list notes', () => { console.log('Showing all notes')})
-yargs.command('read', 'read a note', () => { console.log('Reading a single note') })
+yargs.command({
+    command: 'list',
+    describe: 'List all title of notes',
+    handler () {
+        notes.getNotes()
+    }
+})
+yargs.command({
+    command: 'read',
+    describe: 'Read one entire note',
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler(argv) {
+        notes.readNote(argv.title)
+    }
+})
 yargs.command({
     command: 'add',
     describe: 'Adding new note',
