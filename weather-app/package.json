@@ -9,6 +9,7 @@
   "author": "Bruno Alencar",
   "license": "MIT",
   "dependencies": {
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "yargs": "^13.2.4"
   }
 }
