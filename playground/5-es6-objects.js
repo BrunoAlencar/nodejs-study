@@ -11,7 +11,7 @@ const user = {
 
 console.log(user)
 
-//  Object desctructuring
+//  Object destructuring
 
 const product = {
     label: 'Red notebook',
