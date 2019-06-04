@@ -1,15 +1,18 @@
 const path = require('path')
 const express = require('express')
+const hbs = require('hbs')
 
 const app = express()
 
 // define paths to express config
 const publicDirectory = path.join(__dirname, '../public')
-const viewsPath = path.join(__dirname, '../templates')
+const viewsPath = path.join(__dirname, '../templates/views')
+const partialsPath = path.join(__dirname, '../templates/partials')
 
 //  Setup handlebars engine and view locaiton
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
+hbs.registerPartials(partialsPath)
 
 // Setup static directory to serve
 app.use(express.static(publicDirectory))
@@ -31,7 +34,8 @@ app.get('/about', (req, res) => {
 
 app.get('/help', (req, res) => [
     res.render('help', {
-        message: 'Hey, do you have any problem with this application?? Please contact me!'
+        message: 'Hey, do you have any problem with this application?? Please contact me!',
+        title: 'Help Page'
     })
 ])
 
