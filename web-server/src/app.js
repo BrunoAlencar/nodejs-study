@@ -35,7 +35,8 @@ app.get('/about', (req, res) => {
 app.get('/help', (req, res) => [
     res.render('help', {
         message: 'Hey, do you have any problem with this application?? Please contact me!',
-        title: 'Help Page'
+        title: 'Help Page',
+        name: 'João Bruno Alencar'
     })
 ])
 
@@ -43,6 +44,22 @@ app.get('/weather', (req, res) => {
     res.send({
         forecast: 'Time is good',
         location: 'Maceio'
+    })
+})
+
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        name: 'João Bruno Alencar',
+        errorMessage: 'Help article not found'
+    })
+})
+
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        name: 'João Bruno Alencar',
+        errorMessage: 'Page not found'
     })
 })
 
