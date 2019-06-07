@@ -23,7 +23,7 @@ weatherForm.addEventListener('submit', (e) => {
                 return messageTwo.textContent = data.error
             }
 
-            messageTwo.innerHTML = data.location + '<br>' + data.forecast.summary
+            messageTwo.innerHTML = data.location + '<br>' + data.forecast.summary + '<br>' + 'Temperatura aparente: ' + data.forecast.apparentTemperature
             console.log(data.location)
             console.log(data.forecast)
         })
