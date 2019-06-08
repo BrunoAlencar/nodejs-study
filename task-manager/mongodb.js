@@ -1,8 +1,9 @@
-const mondodb = require('mongodb')
-const MongoClient = mondodb.MongoClient
+const { MongoClient, ObjectID } = require('mongodb')
 
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'task-manager'
+
+
 
 
 MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) => {
@@ -13,52 +14,22 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 
     const db = client.db(databaseName)
 
-    // db.collection('users').insertOne({
-    //     name: 'Bruno',
-    //     age: 23
-    // }, (error, result) => {
-    //     if(error){
-    //         return console.log('Unable to insert user', error)
-    //     }
+    // db.collection('users').findOne( { _id: new ObjectID("5cfb0363b9aec801c8cff59a")  },  (error, user) => {
+    //     if(error) return console.log('Unable to fetch')
 
-    //     console.log(result.ops)
+    //     console.log(user)
     // })
 
-    // db.collection('users').insertMany([
-    //     {
-    //         name: 'Jen',
-    //         age: 28
-    //     }, {
-    //         name: 'Gunter',
-    //         age: 26
-    //     }
-    // ], (error, result) => {
-    //     if(error) {
-    //         return console.log('Unable to insert documents', error)
-    //     }
+    db.collection('tasks').findOne({ _id: new ObjectID('5cfb01678c560a0bec9f4c1c') }, (error, task) => {
+        if(error) return console.log(error)
 
-    //     console.log(result.ops)
-    // })
+        console.log(task)
+    })
 
-    db.collection('tasks').insertMany([
-        {
-            description: 'Study one hour per day',
-            completed: true
-        },
-        {
-            description: 'Do exercises',
-            completed: true
-        },
-        {
-            description: 'Eat well',
-            completed: false
-        }
-    ], (error, result) => {
-        if(error){
-            return console.log('Unable to insert tasks documents', error)
-        }
+    db.collection('tasks').find({completed: false}).toArray((error, tasks) => {
+        if(error) return console.log(error)
 
-        console.log(result.ops)
+        console.log(tasks)
     })
 
 })
