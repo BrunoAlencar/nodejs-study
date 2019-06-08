@@ -7,21 +7,17 @@ const databaseName = 'task-manager'
 
 
 MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) => {
-    if(error) {
+    if (error) {
         return console.log('Unable to connect to database', error)
     }
 
 
     const db = client.db(databaseName)
 
-    db.collection('tasks').updateMany({
-        completed: false
-    }, {
-        $set: {
-            completed: true
-        }
-    }).then(result => {
-        console.log(result)
-    }).catch(error => console.log(error))
+    db.collection('users').deleteMany({
+        age: 26
+    })
+        .then(res => console.log(res))
+        .catch(error => console.log(error))
 
 }) // connection end
