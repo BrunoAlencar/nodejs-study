@@ -1,6 +1,7 @@
 const express = require('express')
 require('./db/mongoose')
 const User = require('./models/user')
+const Task = require('./models/task')
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -11,11 +12,46 @@ app.post('/users', (req, res) => {
     const user = new User(req.body)
 
     user.save().then(result => {
-        res.send(result)
+        res.status(201).send(result)
     }).catch(({message}) =>{
-        res.status(400).send({'Error': message})
+        res.status(400).send({error: message})
     })
 })
+
+app.get('/users', (req, res) => {
+    User.find().then(result => {
+        res.status(200).send(result)
+    }).catch(({message}) => {
+        res.status(500).send({error: message})
+    })
+})
+
+app.get('/users/:id', (req, res) => {
+    const _id = req.params.id
+
+    User.findById(_id).then(user => {
+        if(!user) {
+            return res.status(404).send({error: 'User not found'})
+        }
+        res.send(user)
+    }).catch(({message}) => {
+        res.status(400).send({error: message})
+    })
+    
+    console.log(req.params)
+})
+
+
+app.post('/tasks', (req, res) => {
+    const task = new Task(req.body)
+
+    task.save().then(result => {
+        res.status(201).send(result)
+    }).catch(({message}) => {
+        res.status(400).send({ error: message})
+    })
+})
+
 
 app.listen(port, () => {
     console.log('Server is on the port: ' + port)
