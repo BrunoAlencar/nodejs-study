@@ -43,6 +43,27 @@ app.get('/users/:id', async (req, res) => {
 
 })
 
+app.patch('/users/:id', async (req, res) => {
+    const updates = Object.keys(req.body)
+    const allowedUpdates = ['name', 'email', 'password', 'age']
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+
+    if(!isValidOperation){
+        return res.status(400).send({ error: 'Invalid updates!'})
+    }
+
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true})
+
+        if(!user){
+            res.status(404).send({error: 'User not found'})
+        }
+        res.send(user)
+    } catch ({message}) {
+        res.status(400).send({error: message})
+    }
+})
+
 
 app.post('/tasks', async (req, res) => {
     const task = new Task(req.body)
@@ -79,6 +100,26 @@ app.get('/tasks/:id', async (req, res) => {
     } catch ({ message }) {
         res.status(500).send({ error: message })
     }
+
+})
+
+app.patch('/tasks/:id', async (req, res) => {
+    const updates = Object.keys(req.body)
+    const allowedUpdate = ['completed', 'description']
+    const isValidOperation = updates.every(update => allowedUpdate.includes(update))
+
+    if(!isValidOperation){
+        return res.status(400).send({error: 'Update not allowed!'})
+    }
+
+    try {
+        const task = await Task.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true})
+        res.send(task)
+        
+    } catch ({message}) {
+        res.status(500).send({error: message})
+    }
+
 
 })
 
