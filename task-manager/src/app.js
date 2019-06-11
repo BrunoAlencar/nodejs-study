@@ -19,3 +19,18 @@ app.listen(port, () => {
 })
 
 // https://httpstatuses.com/
+
+
+const bcrypt = require('bcrypt')
+
+const myFunction = async () => {
+    const password = '123456'
+    const hashPassword = await bcrypt.hash(password, 8)
+
+    console.log(password)
+    console.log(hashPassword)
+
+    const isMatch = await bcrypt.compare(password, hashPassword)
+    console.log(isMatch)
+}
+myFunction()
