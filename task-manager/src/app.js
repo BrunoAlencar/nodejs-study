@@ -21,14 +21,14 @@ app.listen(port, () => {
 // https://httpstatuses.com/
 
 
-const jwt = require('jsonwebtoken')
+// const jwt = require('jsonwebtoken')
 
-const myFunction = async () => {
-    const token = jwt.sign({ _id: 'abc123' }, 'thisismynewcourse', {
-        expiresIn: '7 days'
-    })
-    console.log(token)
+// const myFunction = async () => {
+//     const token = jwt.sign({ _id: 'abc123' }, 'thisismynewcourse', {
+//         expiresIn: '7 days'
+//     })
+//     console.log(token)
 
-    console.log(jwt.verify(token, 'thisismynewcourse'))
-}
-myFunction()
+//     console.log(jwt.verify(token, 'thisismynewcourse'))
+// }
+// myFunction()
