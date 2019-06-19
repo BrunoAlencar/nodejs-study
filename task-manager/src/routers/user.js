@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../models/user");
 const auth = require("../middleware/auth");
+const multer = require("multer");
 const router = new express.Router();
 
 router.post("/users", async (req, res) => {
@@ -98,5 +99,31 @@ router.delete("/users/me", auth, async (req, res) => {
     res.status(500).send({ error: message });
   }
 });
+
+const upload = multer({
+  dest: "avatars",
+  limits: {
+    fileSize: 1000000
+  },
+  fileFilter(req, file, callback) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+      return callback(new Error("Please upload an image (jpg, jpeg, png)"));
+    }
+
+    callback(undefined, true);
+  }
+});
+
+router.post(
+  "/users/me/avatar",
+  auth,
+  upload.single("avatar"),
+  (req, res) => {
+    res.send();
+  },
+  ({ message: error }, req, res, next) => {
+    res.status(400).send({ error });
+  }
+);
 
 module.exports = router;
