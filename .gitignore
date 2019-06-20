@@ -62,3 +62,4 @@ typings/
 
 task-manager/config/dev.env
 task-manager/config/prod.env
+task-manager/config
