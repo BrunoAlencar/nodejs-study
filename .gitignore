@@ -61,3 +61,4 @@ typings/
 .next
 
 task-manager/config/dev.env
+task-manager/config/prod.env
