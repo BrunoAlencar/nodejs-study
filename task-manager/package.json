@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch",
+    "test": "env-cmd ./config/test.env jest --watch",
     "start": "node src/app.js",
     "dev": "env-cmd -f ./config/dev.env nodemon src/app.js"
+  },
+  "jest": {
+    "testEnvironment": "node" 
   },
   "keywords": [],
   "author": "",
