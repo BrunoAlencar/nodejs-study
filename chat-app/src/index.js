@@ -14,11 +14,16 @@ io.on('connection', (socket) => {
     console.log('New WebSocket connection')
 
     socket.emit('message', 'Hey! Welcome to my socket.io class!')
+    socket.broadcast.emit('message', 'A new user has joined!')
 
     socket.on('userMessage', (message) => {
         io.emit('userMessage', message)
     })
 
+
+    socket.on('disconnect', () => {
+        io.emit('message', 'A user has left!')
+    })
 })
 
 server.listen(PORT, () => {
